@@ -11,14 +11,24 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        speed = 1;
+        speed = 5;
+        player = GameObject.FindGameObjectWithTag("Player");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-        transform.LookAt(player.transform);
+        Seek();
+    }
+
+
+
+    void Seek()
+    {
+        Vector3 target = player.transform.position;
+
+        Vector3 desiredVel = Vector3.Normalize(target - transform.position) * speed * Time.deltaTime;
+        transform.position = transform.position + desiredVel;
     }
 }

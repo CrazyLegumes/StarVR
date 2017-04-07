@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         position = new Vector3(randx, 1, randz);
         if (enemyCount < maxEnemies &&  Time.time - timer >= 10)
         {
-            Instantiate(enemy, position, new Quaternion(), transform);  //should spawn the enemy as a child of the spawner
+            Instantiate(enemy, position, Quaternion.identity);  //should spawn the enemy as a child of the spawner
             timer = Time.time;
             enemyCount++;
             Debug.Log("SpawnEnemy");
