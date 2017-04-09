@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4678750303737032}
+  - component: {fileID: 136502638997453994}
   - component: {fileID: 120502723249916476}
   - component: {fileID: 108631207582560690}
   - component: {fileID: 114503836787454928}
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863661369468406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.96427274, y: 0.8058, z: 0.50509787}
+  m_LocalPosition: {x: -0.96427274, y: 0.8058, z: 0.521}
   m_LocalScale: {x: 0, y: 0, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -187,3 +188,16 @@ LineRenderer:
     alignment: 0
     textureMode: 0
   m_UseWorldSpace: 0
+--- !u!136 &136502638997453994
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863661369468406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0.35}

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserProjectile : MonoBehaviour {
+public class LaserProjectile : MonoBehaviour
+{
 
-    
+    bool reflected;
     float lifetime;
     float timeLived;
     public Vector3 desiredVelocity;
@@ -38,8 +39,13 @@ public class LaserProjectile : MonoBehaviour {
 
     public void Reflect()
     {
-        desiredVelocity *= -1;
-        timeLived = 0;
+        if (!reflected)
+        {
+            reflected = true;
+            desiredVelocity *= -1;
+            timeLived = 0;
+        }
+
 
     }
 

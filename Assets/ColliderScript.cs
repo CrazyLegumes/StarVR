@@ -28,6 +28,11 @@ public class ColliderScript : MonoBehaviour {
             PlayHit();
             Destroy(col.gameObject);
         }
+        if(col.tag == "Laser")
+        {
+            LaserProjectile l = col.GetComponent<LaserProjectile>();
+            l.Reflect();
+        }
     }
 	void Start () {
 		

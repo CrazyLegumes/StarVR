@@ -6,6 +6,7 @@ public class FireLaser : MonoBehaviour {
 
     [SerializeField]
     GameObject laser;
+    
     LaserProjectile mylaser;
 
 
