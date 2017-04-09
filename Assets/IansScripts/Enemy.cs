@@ -8,17 +8,47 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     GameObject player;
     float speed;
+    float radius;
 
     void Start()
     {
-        speed = 1;
+	speed = 10;
+        radius = 3;
+        player = GameObject.FindGameObjectWithTag("Player");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-        transform.LookAt(player.transform);
+
+       Arrive();
+    }
+
+
+
+    void Seek()
+    {
+        Vector3 target = player.transform.position;
+
+        Vector3 desiredVel = Vector3.Normalize(target - transform.position) * speed * Time.deltaTime;
+        transform.position = transform.position + desiredVel;
+
+    }
+
+
+    void Arrive() {
+        Vector3 target = player.transform.position;
+        Vector3 desVel;
+        float distance = Vector3.Distance(transform.position, target);
+
+        if (distance < radius) {
+            desVel = Vector3.Normalize(target - transform.position) * speed * Time.deltaTime * (distance / radius);
+        }
+        else
+            desVel = Vector3.Normalize(target - transform.position) * speed * Time.deltaTime;
+
+        transform.position += desVel;
+
     }
 }
