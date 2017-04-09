@@ -30,6 +30,7 @@ public class ColliderScript : MonoBehaviour {
         }
         if(col.tag == "Laser")
         {
+            Debug.Log("Doot");
             LaserProjectile l = col.GetComponent<LaserProjectile>();
             l.Reflect();
         }
