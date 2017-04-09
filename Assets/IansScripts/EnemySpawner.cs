@@ -23,8 +23,8 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float randx = Random.Range(transform.position.x - 5, transform.position.x + 5); //spawn the enemy within 5 of the spawner
-        float randz = Random.Range(transform.position.z - 5, transform.position.z + 5); //spawn the enemy winith 5 of the spawner
+        float randx = Random.Range(-50, 50); //spawn the enemy within 5 of the spawner
+        float randz = Random.Range(-50, 50); //spawn the enemy winith 5 of the spawner
         position = new Vector3(randx, 1, randz);
         if (enemyCount < maxEnemies &&  Time.time - timer >= 10)
         {

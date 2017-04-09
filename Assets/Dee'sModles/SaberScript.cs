@@ -7,14 +7,13 @@ public class SaberScript : MonoBehaviour {
     [SerializeField]
     AudioClip[] moveSounds;
 
-    [SerializeField]
-    AudioClip[] collisions;
+   
 
     
     OVRInput.Controller right;
     public AudioSource movePlay;
 
-    public AudioSource hitPlay;
+   
     
     bool moveCooldown;
     
@@ -24,8 +23,7 @@ public class SaberScript : MonoBehaviour {
     {
         if(col.tag == "Enemy")
         {
-            PlayHit();
-            Destroy(col.gameObject);
+           
         }
     }
 
@@ -37,7 +35,7 @@ public class SaberScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 rightVeloc = OVRInput.GetLocalControllerVelocity(right);
-        if (rightVeloc.magnitude > 5 && !moveCooldown)
+        if (rightVeloc.magnitude > 1 && !moveCooldown)
         {
             StartCoroutine(PlayMove());  
         }
@@ -54,11 +52,5 @@ public class SaberScript : MonoBehaviour {
         moveCooldown = false;
     }
 
-    void PlayHit()
-    {
-        hitPlay.clip = collisions[Random.Range(0, collisions.Length)];
-
-        hitPlay.Play();
-
-    }
+    
 }
