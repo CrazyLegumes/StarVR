@@ -19,7 +19,6 @@ public class ForcePush : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("the Spacebar still works");
@@ -54,7 +53,7 @@ public class ForcePush : MonoBehaviour
     void forcePull()
     {
         pullThese = Physics.OverlapBox(new Vector3(transform.position.x + 10, transform.position.y, transform.position.z),
-            new Vector3(4.5f, 2, 2), Quaternion.identity, layers);
+            new Vector3(15f, 2, 2), Quaternion.identity, layers);
         if (pullThese.Length > 0)
         {
             foreach (Collider a in pullThese)
