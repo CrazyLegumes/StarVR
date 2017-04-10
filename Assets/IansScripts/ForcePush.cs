@@ -20,6 +20,20 @@ public class ForcePush : MonoBehaviour
 
     void Update()
     {
+
+
+        if (OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))
+        {
+            Debug.Log("Left Hand Trigger!\nPUSH!!!");
+            forcePush();
+        }
+        if(OVRInput.GetDown(OVRInput.RawButton.LShoulder))
+        {
+            Debug.Log("Left Shoulder!\nPULL!!!");
+            forcePull();
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("the Spacebar still works");
