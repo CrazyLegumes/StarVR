@@ -20,6 +20,12 @@ public class LaserProjectile : MonoBehaviour
     }
 
 
+    void OnTriggerEnter(Collider col) {
+        if (reflected && col.tag == "Enemy") {
+            Destroy(col.gameObject);
+            Destroy(gameObject);
+        }
+    }
     void Update()
     {
         timeLived += Time.deltaTime;

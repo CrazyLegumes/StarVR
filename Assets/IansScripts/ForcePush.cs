@@ -22,12 +22,12 @@ public class ForcePush : MonoBehaviour
     {
 
 
-        if (OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))
+        if (OVRInput.GetDown(OVRInput.RawButton.X))
         {
             Debug.Log("Left Hand Trigger!\nPUSH!!!");
             forcePush();
         }
-        if(OVRInput.GetDown(OVRInput.RawButton.LShoulder))
+        if(OVRInput.GetDown(OVRInput.RawButton.Y))
         {
             Debug.Log("Left Shoulder!\nPULL!!!");
             forcePull();
@@ -46,16 +46,10 @@ public class ForcePush : MonoBehaviour
         }
 
     }
-
-    void FixedUpdate()
-    {
-
-    }
-
     void forcePush()
     {
-        pushThese = Physics.OverlapBox(new Vector3(transform.position.x + 10, transform.position.y, transform.position.z),
-            new Vector3(10f, 2, 2), Quaternion.identity, layers);
+        pushThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
+            new Vector3(10f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pushThese)
         {
             force = Vector3.Normalize(player.transform.position - a.transform.position);
@@ -65,8 +59,8 @@ public class ForcePush : MonoBehaviour
     }
     void forcePull()
     {
-        pullThese = Physics.OverlapBox(new Vector3(transform.position.x + 10, transform.position.y, transform.position.z),
-            new Vector3(10f, 2, 2), Quaternion.identity, layers);
+        pullThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
+            new Vector3(10f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pullThese)
         {
             force = Vector3.Normalize(player.transform.position - a.transform.position);

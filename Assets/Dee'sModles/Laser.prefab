@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863661369468406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.96427274, y: 0.8058, z: 0.521}
+  m_LocalPosition: {x: -37.968422, y: 0.694, z: 19.63786}
   m_LocalScale: {x: 0, y: 0, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,8 +89,8 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_AreaSize: {x: 0.10920906, y: 0.059313893}
-  m_BounceIntensity: 3.25
+  m_AreaSize: {x: 0.28, y: 0.29}
+  m_BounceIntensity: 8
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &114503836787454928
