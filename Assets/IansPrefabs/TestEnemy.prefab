@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 23130458625617840}
   - component: {fileID: 114002326633365584}
   - component: {fileID: 54070920110428532}
+  - component: {fileID: 114399689269515764}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -191,6 +192,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1836581040050156, guid: 71a1c4f9637695d4bb3c9727484a83a0, type: 2}
+--- !u!114 &114399689269515764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694793375192606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50fa2addf19334748b5fd456a3543b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laser: {fileID: 1863661369468406, guid: 148cf0f7fb84cdf46be06e3de593c9af, type: 2}
 --- !u!136 &136518322462981332
 CapsuleCollider:
   m_ObjectHideFlags: 1
