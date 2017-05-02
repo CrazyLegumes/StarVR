@@ -33,6 +33,9 @@ public class LaserProjectile : MonoBehaviour
             Destroy(gameObject);
 
         transform.position += desiredVelocity * 20 * Time.deltaTime;
+
+        if (Vector3.Distance(transform.position, Vector3.zero) > 400)
+            Destroy(gameObject);
     }
 
 

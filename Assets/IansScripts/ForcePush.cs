@@ -54,6 +54,7 @@ public class ForcePush : MonoBehaviour
     void forcePowers()
     {
         Vector3 leftVel = OVRInput.GetLocalControllerVelocity(leftHand);
+        
         if(leftVel.x > .7 && Time.time - pushCooldownStart > 2.0f)
         {
             forcePush();
@@ -69,7 +70,7 @@ public class ForcePush : MonoBehaviour
     {
         pushCooldownStart = Time.time;
         pushThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
-            new Vector3(10f, 2, 10), Quaternion.identity, layers);
+            new Vector3(20f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pushThese)
         {
             force = Vector3.Normalize(player.transform.position - a.transform.position);
@@ -81,7 +82,7 @@ public class ForcePush : MonoBehaviour
     {
         pullCooldownStart = Time.time;
         pullThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
-            new Vector3(10f, 2, 10), Quaternion.identity, layers);
+            new Vector3(20f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pullThese)
         {
             force = Vector3.Normalize(player.transform.position - a.transform.position);
