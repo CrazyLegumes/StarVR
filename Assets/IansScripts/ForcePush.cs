@@ -11,43 +11,63 @@ public class ForcePush : MonoBehaviour
     Collider[] pullThese;
     public LayerMask layers;
     Vector3 force;
+    double pushCooldownStart;
+    double pullCooldownStart;
+
+    OVRInput.Controller leftHand;
 
     void Start()
     {
-
+        leftHand = OVRInput.Controller.LTrackedRemote;
     }
 
 
     void Update()
     {
+        forcePowers();
+
+        //if (OVRInput.GetDown(OVRInput.RawButton.X))
+        //{
+        //    Debug.Log("Left Hand Trigger!\nPUSH!!!");
+        //    forcePush();
+        //}
+        //if (OVRInput.GetDown(OVRInput.RawButton.Y))
+        //{
+        //    Debug.Log("Left Shoulder!\nPULL!!!");
+        //    forcePull();
+        //}
 
 
-        if (OVRInput.GetDown(OVRInput.RawButton.X))
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Debug.Log("the Spacebar still works");
+        //    forcePush();
+        //}
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    Debug.Log("the I key still works");
+        //    forcePull();
+        //}
+
+    }
+
+    void forcePowers()
+    {
+        Vector3 leftVel = OVRInput.GetLocalControllerVelocity(leftHand);
+        if(leftVel.x > .7 && Time.time - pushCooldownStart > 2.0f)
         {
-            Debug.Log("Left Hand Trigger!\nPUSH!!!");
             forcePush();
+            Debug.Log("Force Push");
         }
-        if(OVRInput.GetDown(OVRInput.RawButton.Y))
+        else if(leftVel.x < -.7 && Time.time - pullCooldownStart > 2.0f)
         {
-            Debug.Log("Left Shoulder!\nPULL!!!");
             forcePull();
+            Debug.Log("Force Pull");
         }
-
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("the Spacebar still works");
-            forcePush();
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log("the I key still works");
-            forcePull();
-        }
-
     }
     void forcePush()
     {
+        pushCooldownStart = Time.time;
         pushThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
             new Vector3(10f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pushThese)
@@ -59,6 +79,7 @@ public class ForcePush : MonoBehaviour
     }
     void forcePull()
     {
+        pullCooldownStart = Time.time;
         pullThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
             new Vector3(10f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pullThese)
