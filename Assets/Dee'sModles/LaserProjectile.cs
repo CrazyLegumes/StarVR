@@ -21,7 +21,7 @@ public class LaserProjectile : MonoBehaviour
 
 
     void OnTriggerEnter(Collider col) {
-        if (reflected && col.tag == "Enemy") {
+        if (reflected && (col.tag == "Enemy" || col.tag == "turret")) {
             Destroy(col.gameObject);
             Destroy(gameObject);
         }

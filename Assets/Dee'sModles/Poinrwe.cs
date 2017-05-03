@@ -12,14 +12,21 @@ public class Poinrwe : MonoBehaviour {
     public OvrAvatarDriver driver;
 
     public GameObject pointer;
+    public GameObject UIobj;
+    public GameObject ColorPick;
+    public GameObject lightSaber;
 
     public LayerMask canPoint;
     bool pointing;
     bool canStart;
+    bool startWaves;
+    bool pickingcolor;
+    GameObject colorChange;
     
 
 	// Use this for initialization
 	void Start () {
+        UIobj.SetActive(false);
 		
 	}
 	
@@ -33,9 +40,30 @@ public class Poinrwe : MonoBehaviour {
         if(canStart && OVRInput.GetDown(OVRInput.Button.One))
         {
             SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
         }
+
+        if(startWaves && OVRInput.GetDown(OVRInput.Button.One))
+        {
+            Manager.Starto = true;
+            Manager.MainGame = false;
+            UIobj.SetActive(false);
+        }
+        if(pickingcolor && OVRInput.GetDown(OVRInput.Button.One) && colorChange != null)
+        {
+            Material switcher = colorChange.GetComponent<Renderer>().material;
+            lightSaber.GetComponent<Renderer>().material = switcher;
+        }
+        if (Manager.MainGame)
+            UIobj.SetActive(true);
 		
 	}
+
+    private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+    {
+        Manager.MainGame = true;
+        Manager.Starto = false;
+    }
 
     void CheckPointer(OvrAvatarDriver.ControllerPose hando)
     {
@@ -50,6 +78,8 @@ public class Poinrwe : MonoBehaviour {
         {
             pointing = false;
             canStart  =false;
+            startWaves = false;
+            pickingcolor = false;
             pointer.GetComponent<Renderer>().enabled = false;
         }
 
@@ -68,10 +98,25 @@ public class Poinrwe : MonoBehaviour {
         {
             if (hit.transform.name == "Starto")
                 canStart = true;
+
+            if (hit.transform.name == "Start Game")
+            {
+                startWaves = true;
+                
+            }
+            if (hit.transform.name.Contains("Color"))
+            {
+                pickingcolor = true;
+                colorChange = hit.transform.gameObject;
+
+            }
+            
         }
         else
         {
             canStart = false;
+            startWaves = false;
+            pickingcolor = false;
         }
     }
 

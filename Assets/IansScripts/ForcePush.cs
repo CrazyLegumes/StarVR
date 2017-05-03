@@ -11,8 +11,7 @@ public class ForcePush : MonoBehaviour
     Collider[] pullThese;
     public LayerMask layers;
     Vector3 force;
-    double pushCooldownStart;
-    double pullCooldownStart;
+    double ForceCooldown;
 
     OVRInput.Controller leftHand;
 
@@ -55,12 +54,13 @@ public class ForcePush : MonoBehaviour
     {
         Vector3 leftVel = OVRInput.GetLocalControllerVelocity(leftHand);
         
-        if(leftVel.x > .7 && Time.time - pushCooldownStart > 2.0f)
+        
+        if(leftVel.z < -.7 && Time.time - ForceCooldown > 2.0f)
         {
             forcePush();
             Debug.Log("Force Push");
         }
-        else if(leftVel.x < -.7 && Time.time - pullCooldownStart > 2.0f)
+        else if(leftVel.z > .7 && Time.time - ForceCooldown > 2.0f)
         {
             forcePull();
             Debug.Log("Force Pull");
@@ -68,24 +68,26 @@ public class ForcePush : MonoBehaviour
     }
     void forcePush()
     {
-        pushCooldownStart = Time.time;
+        ForceCooldown = Time.time;
         pushThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
             new Vector3(20f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pushThese)
         {
             force = Vector3.Normalize(player.transform.position - a.transform.position);
+            force.y = 0;
             a.GetComponent<Rigidbody>().AddForce(force * intensity);
         }
 
     }
     void forcePull()
     {
-        pullCooldownStart = Time.time;
+        ForceCooldown = Time.time;
         pullThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
             new Vector3(20f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pullThese)
         {
             force = Vector3.Normalize(player.transform.position - a.transform.position);
+            force.y = 0;
             a.GetComponent<Rigidbody>().AddForce(-(force) * intensity);
         }
     }

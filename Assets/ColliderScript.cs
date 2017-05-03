@@ -25,8 +25,9 @@ public class ColliderScript : MonoBehaviour {
     void  OnTriggerEnter(Collider col) {
         Debug.Log("HIT SOMETHING");
         if(col.tag == "Enemy") {
+            col.GetComponent<Animator>().SetBool("isAlive", false);
             PlayHit();
-            Destroy(col.gameObject);
+            Destroy(col.gameObject, 2.0f);
         }
         if(col.tag == "Laser")
         {
