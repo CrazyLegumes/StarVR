@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     {
         
 	    speed = 3;
-        radius = 1.2f;
+        radius = 2f;
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
         anim.SetBool("isAlive", true);

@@ -12,6 +12,8 @@ public class ForcePush : MonoBehaviour
     public LayerMask layers;
     Vector3 force;
     double ForceCooldown;
+    [SerializeField]
+    GameObject forceprefab;
 
     OVRInput.Controller leftHand;
 
@@ -69,6 +71,7 @@ public class ForcePush : MonoBehaviour
     void forcePush()
     {
         ForceCooldown = Time.time;
+        Destroy(Instantiate(forceprefab, transform.position, Quaternion.identity,transform), 1f);
         pushThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
             new Vector3(20f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pushThese)
@@ -82,6 +85,7 @@ public class ForcePush : MonoBehaviour
     void forcePull()
     {
         ForceCooldown = Time.time;
+        Destroy(Instantiate(forceprefab,new Vector3(transform.position.x + 30, transform.position.y, transform.position.z), Quaternion.Euler(0,180,0), transform ), 1f);
         pullThese = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z),
             new Vector3(20f, 2, 10), Quaternion.identity, layers);
         foreach (Collider a in pullThese)
